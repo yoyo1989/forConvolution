@@ -20,10 +20,11 @@ for j=0, ntemp-1 do begin
 phasearr[j]=-10+j*2
 endfor
 plot, phasearr, -vel_min, psym=4
+oploterror, phasearr, -vel_min, err_std, psym=3
 
 nsn=n_elements(snname)
 
-For i=13, 13 Do Begin
+For i=1, 1 Do Begin
 IF snname[i] EQ 'sn1993J' then cd,basicdir+snname[i]+'/spec/lick' ELSE if snname[i] EQ 'sn2007ru' then cd,basicdir+snname[i]+'_Sahu' ELSE if snname[i] EQ 'sn2010bh' then cd, basicdir+snname[i]+'/spec/Chornock' ELSE cd,basicdir+snname[i]+'/spec'
    print, snname[i]
    
