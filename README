@@ -1,0 +1,17 @@
+produced by
+/Users/yuqianliu/Desktop/snidmeanspectra/templates-2.0_myself/snidmeanspec.pro
+
+used by 
+/Users/yuqianliu/Desktop/FED_Ic_conv_Icbl_0910_MCMC_v10.py
+
+check
+/home/users/yl1260/snidmeanspectra/templates-2.0_myself/Ic_SN_spec_dis*.pdf
+to see how many SNe/spectra each mean spectrum contains
+
+mean spectra at phase 62 and 64 have < 3 SNe
+
+file mean_FeII5169_vabs_mc.dat contains file name, wavelength at minimum absorption, mean velocity from MC, error bars from MC
+
+file mean_FeII5169_vabs.dat contains file name, wavelength at minimum absorption, velocity at minimum absorption
+
+file mean_FeII5169_vabs_std.dat contains phase of mean spectrum, number of spectra that go to mean spectrum, mean velocity of velocities of spectra that go to mean spectrum, standard deviation of velocities of spectra that go to mean spectrum.
