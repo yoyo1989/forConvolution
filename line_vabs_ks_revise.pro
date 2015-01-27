@@ -8,6 +8,7 @@ PRO line_vabs_ks_revise, line=line, phaserange=phaserange,xmeanIb,pmeanIb,sigmam
 if not keyword_set(phaserange) then phaserange=[-2, 2]
 if not keyword_set(line) then line='FeII5169'
 if line eq 'HeI5876' then line='HeI5875'
+model_label=1 ; 1 to use model 1, 2 to use model 2
 
 readcol,'Fe_nogrb_list', velocityIb, FORMAT='A',/SILENT
 readcol,'Fe_sngrb_list', velocityIc, FORMAT='A',/SILENT
@@ -37,11 +38,19 @@ l=0
 
 For n=0, nvelocityIb-1 Do Begin
 readcol, velocityIb[n], spectra, phase, vel, velerr1, velerr2, velerr_1, velerr_2, FORMAT='A, F, F, F, F, F, F',/SILENT
-velerr_m=(velerr_1+velerr_2)/2 ; mean
-velerr_d=(velerr_2-velerr_1)/2 ; difference
-velerr_b=(velerr_2-velerr_1)/sqrt(2.0*3.14) 
+if model_label eq 1 then begin
+velerr_m=(velerr_1+velerr_2)/2.0 ; mean
+velerr_d=(velerr_2-velerr_1)/2.0 ; difference
+velerr_b=(velerr_2-velerr_1)/sqrt(2.0*!pi) 
 vel=vel-velerr_b
-velerr=sqrt(velerr_m^2+(1-2.0/3.14)*velerr_d^2)
+velerr=sqrt(velerr_m^2+(1-2.0/!pi)*velerr_d^2)
+endif
+if model_label eq 2 then begin
+velerr_m=(velerr_1+velerr_2)/2.0 ; mean
+velerr_d=(velerr_2-velerr_1)/2.0 ; difference
+vel=vel-velerr_d
+velerr=sqrt(velerr_m^2+2*velerr_d^2)  
+endif
 vel=vel[where(phase LT phaserange[1] and phase GT phaserange[0],num)]
 velerr=velerr[where(phase LT phaserange[1] and phase GT phaserange[0])]
 phase_use=phase[where(phase LT phaserange[1] and phase GT phaserange[0])]
@@ -63,11 +72,19 @@ End
 
 For n=0, nvelocityIc-1 Do Begin
 readcol, velocityIc[n], spectra, phase, vel, velerr1, velerr2, velerr_1, velerr_2, FORMAT='A, F, F, F, F, F, F',/SILENT
-velerr_m=(velerr_1+velerr_2)/2 ; mean
-velerr_d=(velerr_2-velerr_1)/2 ; difference
-velerr_b=(velerr_2-velerr_1)/sqrt(2.0*3.14) 
+if model_label eq 1 then begin
+velerr_m=(velerr_1+velerr_2)/2.0 ; mean
+velerr_d=(velerr_2-velerr_1)/2.0 ; difference
+velerr_b=(velerr_2-velerr_1)/sqrt(2.0*!pi) 
 vel=vel-velerr_b
-velerr=sqrt(velerr_m^2+(1-2.0/3.14)*velerr_d^2)
+velerr=sqrt(velerr_m^2+(1-2.0/!pi)*velerr_d^2)
+endif
+if model_label eq 2 then begin
+velerr_m=(velerr_1+velerr_2)/2.0 ; mean
+velerr_d=(velerr_2-velerr_1)/2.0 ; difference
+vel=vel-velerr_d
+velerr=sqrt(velerr_m^2+2*velerr_d^2)  
+endif
 vel=vel[where(phase LT phaserange[1] and phase GT phaserange[0],num)]
 velerr=velerr[where(phase LT phaserange[1] and phase GT phaserange[0])]
 phase_use=phase[where(phase LT phaserange[1] and phase GT phaserange[0])]

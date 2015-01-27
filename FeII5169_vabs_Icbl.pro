@@ -1,8 +1,10 @@
 PRO FeII5169_vabs_Icbl
 
+; calls line_vabs_ks_revise.pro
+; plot both individual and mean Fe II 5169 velocity 
 ; note that 10bh has much larger velocities than other SN-GRB
 
-readcol,'Fe_nogrb_list', velocityIb, FORMAT='A',/SILENT
+readcol,'Fe_nogrb_list', velocityIb, FORMAT='A',/SILENT 
 readcol, 'Fe_sngrb_list', velocityIc, FORMAT='A',/SILENT
 
 nvelocityIb=n_elements(velocityIb)
@@ -10,7 +12,8 @@ nvelocityIc=n_elements(velocityIc)
 
 loadct,12 ;load color table
 yq_plot_default,color_IIb, color_Ib, color_Ic, psym_IIb, psym_Ib, psym_Ic
-color_Icbl=210 
+
+; plot individual velocity
 
 ps_open, 'Icbl_FeII5169_vabs',/ps_font,/color,/times;,/portrait
 device, /inches,  xsize = 9.0, ysize = 7.5
@@ -39,44 +42,46 @@ print, velocityIc[n]
 Endfor
 ps_close
 
+; create arrays to store mean values
+
 num=5
-
-xmeanIbarr=fltarr(num)
-xmeanIcarr=fltarr(num)
-sigmamIbarr=fltarr(num)
+xmeanIbarr=fltarr(num) ; mean velocity
+xmeanIcarr=fltarr(num) 
+sigmamIbarr=fltarr(num) ; standard deviation of mean velocity
 sigmamIcarr=fltarr(num)
-sigmadIbarr=fltarr(num)
+sigmadIbarr=fltarr(num) ; standard deviation of velocity data points
 sigmadIcarr=fltarr(num)
-
-pmeanIbarr=fltarr(num)
+pmeanIbarr=fltarr(num) ; mean phase
 pmeanIcarr=fltarr(num)
-psigmamIbarr=fltarr(num)
+psigmamIbarr=fltarr(num) ; standard deviation of mean phase
 psigmamIcarr=fltarr(num)
-psigmadIbarr=fltarr(num)
+psigmadIbarr=fltarr(num) ; standard deviation of phase data points
 psigmadIcarr=fltarr(num)
 
-yq_plot_default,color_IIb, color_Ib, color_Ic, psym_IIb, psym_Ib, psym_Ic
+; calculate mean values
+
 For i=0, num-1 Do begin
 line_vabs_ks_revise,phaserange=[-15+i*10,-5+i*10],xmeanIb,pmeanIb,sigmamIb,psigmamIb,sigmadIb,psigmadIb,xmeanIc,pmeanIc,sigmamIc,psigmamIc,sigmadIc,psigmadIc,n_Ib,n_Ic
-xmeanIbarr[i]=xmeanIb
+xmeanIbarr[i]=xmeanIb ; mean values
 xmeanIcarr[i]=xmeanIc
 pmeanIbarr[i]=pmeanIb
 pmeanIcarr[i]=pmeanIc
-sigmamIbarr[i]=sigmamIb
+sigmamIbarr[i]=sigmamIb ; standard deviation of mean values
 sigmamIcarr[i]=sigmamIc
 psigmamIbarr[i]=psigmamIb
 psigmamIcarr[i]=psigmamIc
-sigmadIbarr[i]=sigmadIb
+sigmadIbarr[i]=sigmadIb ; standard deviation of data points
 sigmadIcarr[i]=sigmadIc
 psigmadIbarr[i]=psigmadIb
 psigmadIcarr[i]=psigmadIc
 if n_Ib lt 3 or n_Ic lt 3 then begin
   print, 'not enough data this range: ', -15+i*10,-5+i*10
-  print, 'no grb', n_Ib
-  print, 'sngrb', n_Ic
-  endif
-  
+  print, 'No. of Ic-bl without grb', n_Ib
+  print, 'Npo. of sngrb', n_Ic
+endif 
 Endfor
+
+; plot mean values
 
 ps_open, 'Icbl_FeII5169_vabs_mean',/ps_font,/color,/times;,/portrait
 device, /inches,  xsize = 9.0, ysize = 7.5
