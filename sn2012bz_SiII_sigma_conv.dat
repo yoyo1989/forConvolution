@@ -1,0 +1,4 @@
+spec_name  phase        sigma_50         sigma_err_16  sigma_err_84   
+GRB120422A_May6_GTC-z-bin-bl.flm             0.8        -12884.6          2862.4          1539.8
+GRB120422A_May_10_XSH-z-bin-bl.flm             3.9        -11122.5          6907.7           792.7
+GRB120422A_May_16_XSH-z-bin-bl.flm             8.6         -8534.7          3104.7           223.7

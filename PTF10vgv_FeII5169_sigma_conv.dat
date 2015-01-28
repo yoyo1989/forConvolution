@@ -1,0 +1,5 @@
+spec_name  phase        sigma_50         sigma_err_16  sigma_err_84   
+10vgv_20100916_Lick_3-m_v1-z-bl.flm            -6.6         -6310.6          1447.7          1054.5
+10vgv_20100927_HET_v1-z-bl.flm             4.2         -2578.6           162.6           164.2
+10vgv_20101001_Lick_3-m_v1-z-bl.flm             8.2         -4508.8           246.0           272.3
+10vgv_20101030_P200_v2-z-bl.flm            36.7         -4783.6           788.3           962.2

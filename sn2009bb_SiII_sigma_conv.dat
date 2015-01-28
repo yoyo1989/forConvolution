@@ -1,0 +1,10 @@
+spec_name  phase        sigma_50         sigma_err_16  sigma_err_84   
+SN09bb_b01_DUP_WF_28mar09-bl-z.flm            -5.3         -7822.1           781.5           556.4
+SN09bb_b01_DUP_WF_29mar09-bl-z.flm            -4.4         -2650.0           357.4          2115.0
+SN09bb_b01_DUP_WF_03apr09-bl-z.flm             0.6         -2181.7           213.1           419.3
+SN09bb_BAA_IM_07apr09-bl-z.flm             4.5         -6850.5           989.2           659.2
+SN09bb_b01_CLA_LD_17apr09-bl-z.flm            14.6         -2430.5           669.8          1150.4
+SN09bb_b01_DUP_BC_18apr09-bl-z.flm            15.6         -4444.3           362.9          1616.1
+SN09bb_b01_DUP_BC_22apr09-bl-z.flm            19.6         -4415.0           273.9           192.7
+SN09bb_b01_DUP_BC_23apr09-bl-z.flm            20.6         -4019.1           413.8           397.5
+SN09bb_r01_GEM_GMOS_26apr-bl-z.flm            23.6         -3279.1           237.3           881.6

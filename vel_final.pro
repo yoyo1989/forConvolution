@@ -1,5 +1,5 @@
 PRO vel_final
-;remember to change L4, 52, 54
+;remember to change L4, 54, 56
 
 Si_flag=0; 0 to compare Fe, 1 to compare Si
 basicdir='/Users/yuqianliu/Desktop/regenerateSNID/'

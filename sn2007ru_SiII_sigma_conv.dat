@@ -1,0 +1,8 @@
+spec_name  phase        sigma_50         sigma_err_16  sigma_err_84   
+sn2007ru-20071203-z.flm            -3.0         -3668.1           763.6          1335.6
+sn2007ru-20071206-z.flm            -0.0         -3796.3           341.9           751.3
+snru_dec10_fcorr_d-bl.flm             4.0         -8646.7          3952.7           588.5
+snru_dec11_fcorr_d-bl.flm             5.0         -7738.8          3028.0           297.1
+snru_dec15_fcorr_d-bl.flm             9.0         -8813.5           384.1           918.8
+snru_dec19_fcorr_d-bl.flm            13.0         -6547.2           226.4           124.6
+snru_dec22_fcorr_d-bl.flm            16.0         -6262.6          1229.5          1717.9
