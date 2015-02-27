@@ -1,7 +1,7 @@
 PRO sigma_final
 ;remember to change L4, 54, 56
 
-Si_flag=1; 0 to compare Fe, 1 to compare Si
+Si_flag=0; 0 to compare Fe, 1 to compare Si
 basicdir='/Users/yuqianliu/Desktop/regenerateSNID/'
 readcol, basicdir+'vabs/TypeIcbl', snname, f='a' ,/SILENT
 
@@ -51,9 +51,9 @@ IF snname[i] EQ 'sn1993J' then cd,basicdir+snname[i]+'/spec/lick' ELSE if snname
     for k=0, nspec-1 do begin   
       readcol, spectra[k], wave, flux, f='f,f'
       ;for Fe
-      ;if min(wave)  lt 4800 and phases[k] lt 75 then begin
+      if min(wave)  lt 4800 and phases[k] lt 75 then begin
       ;for Si
-      if max(wave)  gt 6400 and min(wave) lt 5800 and phases[k] lt 25 then begin
+      ;if max(wave)  gt 6400 and min(wave) lt 5800 and phases[k] lt 25 then begin
     ;if phases[k] le -10 then phase_use=-10 else if phases[k] eq 62 or phases[k] eq 63 then phase_use=60 else if phases[k] eq 64 or phases[k] eq 65 then phase_use=66 else if phases[k] ge 72 then phase_use=72 else if phases[k] lt 0 then phase_use=round(phases[k]/2.0)*2 else phase_use=phases[k]/2*2
     ;print, spectra[k]+'-flat.sav.dat'
     ;printf, 2, spectra[k]
@@ -96,6 +96,11 @@ IF snname[i] EQ 'sn1993J' then cd,basicdir+snname[i]+'/spec/lick' ELSE if snname
     ;vel_err2_temperr=sqrt(vel_err2^2+err_std(where(phase_std eq phase_use))^2)    
     ;print, gettok(dum8[2], ']')*1000.0-gettok(dum8_0, ',')*1000.0
     ;print, vel_conv_1-vel_conv
+    if abs(vel_conv_12) gt 20000 then begin
+      print,'too large value: ', snname[i]
+      ;return
+    endif
+
     printf, 2, spectra[k], phase[k], vel_total, vel_err1, vel_err2,$
       format='(a, f16.1, f16.1, f16.1, f16.1)'
     ;print, vel_conv_1-vel_conv_12
