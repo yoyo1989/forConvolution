@@ -1,4 +1,4 @@
-PRO line_vabs_ks_revise, line=line, phaserange=phaserange,xmeanIb,pmeanIb,sigmamIb,psigmamIb,sigmadIb,psigmadIb,xmeanIc,pmeanIc,sigmamIc,psigmamIc,sigmadIc, psigmadIc, n_Ib,n_Ic,p_IbIc
+PRO line_vabs_ks_revise_sigma, line=line, phaserange=phaserange,xmeanIb,pmeanIb,sigmamIb,psigmamIb,sigmadIb,psigmadIb,xmeanIc,pmeanIc,sigmamIc,psigmamIc,sigmadIc, psigmadIc, n_Ib,n_Ic,p_IbIc
 
 ;use weighted mean value with asymmetirc errors (see Roger Barlow 2003) to represent each SN and then do KS test
 ;calculate weighted mean, standard deviation and median of these mean values
@@ -37,7 +37,7 @@ k=0
 l=0
 
 For n=0, nvelocityIb-1 Do Begin
-readcol, gettok(velocityIb[n], '_')+'_'+line+'_vabs_conv.dat', spectra, phase, vel, velerr1, velerr2, velerr_1, velerr_2, FORMAT='A, F, F, F, F, F, F',/SILENT
+readcol, gettok(velocityIb[n],'_')+'_'+line+'_sigma_conv.dat', spectra, phase, vel, velerr_1, velerr_2, FORMAT='A, F, F, F, F',/SILENT
 if model_label eq 1 then begin
 velerr_m=(velerr_1+velerr_2)/2.0 ; mean
 velerr_d=(velerr_2-velerr_1)/2.0 ; difference
@@ -71,7 +71,7 @@ Endif
 End
 
 For n=0, nvelocityIc-1 Do Begin
-readcol, gettok(velocityIc[n], '_')+'_'+line+'_vabs_conv.dat', spectra, phase, vel, velerr1, velerr2, velerr_1, velerr_2, FORMAT='A, F, F, F, F, F, F',/SILENT
+readcol, gettok(velocityIc[n], '_')+'_'+line+'_sigma_conv.dat', spectra, phase, vel, velerr_1, velerr_2, FORMAT='A, F, F, F, F',/SILENT
 if model_label eq 1 then begin
 velerr_m=(velerr_1+velerr_2)/2.0 ; mean
 velerr_d=(velerr_2-velerr_1)/2.0 ; difference
